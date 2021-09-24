@@ -1,3 +1,4 @@
+const axios = require("axios");
 class Calculator {
   add = (x, y) => x + y;
   subtract = (x, y) => x - y;
@@ -14,6 +15,22 @@ class Calculator {
   };
 
   sayHello = (str) => console.log(str);
+
+  testPromise = () => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(3);
+      }, 3000);
+    }).then((res) => res * 2);
+  };
+
+  testAPI = () => {
+    return new Promise((resolve, reject) => {
+      axios.get("https://jsonplaceholder.typicode.com/users/1").then((res) => {
+        return resolve(res.data);
+      });
+    }).then(res => res);
+  };
 }
 
 module.exports = new Calculator();
