@@ -8,6 +8,10 @@ chai.use(chaiaspromise);
 
 const expect = chai.expect;
 
+beforeEach(()=>{
+    sinon.restore();
+});
+
 describe("calculator ", () => {
   it("test add method", () => {
     expect(calculator.add(1, 2)).to.be.equal(3);
@@ -22,7 +26,7 @@ describe("calculator ", () => {
   });
 });
 
-describe.skip("mock function add", () => {
+describe("mock function add", () => {
   it("mock say hello", () => {
     const mock = sinon.mock(calculator);
     const expectation = mock.expects("sayHello");
@@ -33,7 +37,7 @@ describe.skip("mock function add", () => {
   });
 });
 
-describe.skip("test a stub", () => {
+describe("test a stub", () => {
   it("stub add", () => {
     const stub = sinon.stub(calculator, "add");
     stub.withArgs(10, 20).returns(30);
@@ -41,7 +45,7 @@ describe.skip("test a stub", () => {
   });
 });
 
-describe.skip("test a promise", () => {
+describe("test a promise", () => {
   it("test a promise", function () {
     this.timeout(5000);
     return expect(calculator.testPromise()).to.eventually.equal(6);
